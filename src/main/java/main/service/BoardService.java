@@ -19,5 +19,9 @@ public interface BoardService {
 	 * 상세화면  
 	 */
 	public BoardVO selectBoardDetail(int unq) throws Exception;
+	/*
+	 * 조회수 증가  
+	 */
+	public int updateBoardHits(int unq) throws Exception;
 
 }

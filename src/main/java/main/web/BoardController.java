@@ -90,7 +90,7 @@ public class BoardController {
 		/*
 		 * 조회수 증가
 		 */
-		//boardService.updateBoardHits(vo.getUnq());
+		boardService.updateBoardHits(vo.getUnq());
 		
 		/*
 		 * 상세보기

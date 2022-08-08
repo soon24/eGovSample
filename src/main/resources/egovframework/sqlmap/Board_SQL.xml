@@ -48,5 +48,10 @@
 		select unq,title,name,content,to_char(rdate,'yyyy-mm-dd') rdate from board
 		where unq=#unq#
 	</select>
+	
+	<update id="boardDAO.updateBoardHits">
+		update board set hits = hits + 1 where unq = #unq#
+	</update>
+	
 
 </sqlMap>
