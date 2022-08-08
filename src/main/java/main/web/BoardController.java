@@ -105,5 +105,34 @@ public class BoardController {
 		
 		return "board/boardDetail";
 	}	
+
+	@RequestMapping("/boardModifyWrite.do")
+	public String selectBoardModifyWrite(BoardVO vo, ModelMap model) throws Exception {
+
+		//System.out.println("boardModifyWrite.do ==> 1");
+		BoardVO boardVO = boardService.selectBoardDetail(vo.getUnq());
+		model.addAttribute("boardVO", boardVO);
+		
+		return "board/boardModifyWrite";
+
+	}
+
+	@RequestMapping("/boardModifySave.do")
+	@ResponseBody
+	public String updateBoard(BoardVO vo) throws Exception {
+
+		int result = 0 ;
+		
+		//System.out.println("count ==> Start");
+		int count = boardService.selectBoardPass(vo);  // int count = 1;
+		//System.out.println("count ==> "+count);
+		if (count == 1) {
+			result = boardService.updateBoard(vo); // result = 1;
+		} else {
+			result = -1;
+		}
+		return result+""; // ajax jsp에 전송 시에는 반드시 String 형태로 return 해야됩니다.
+	}
+	
 	
 }

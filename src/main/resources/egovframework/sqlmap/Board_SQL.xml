@@ -52,6 +52,18 @@
 	<update id="boardDAO.updateBoardHits">
 		update board set hits = hits + 1 where unq = #unq#
 	</update>
+
+	<update id="boardDAO.updateBoard">
+		update board set 
+			title = #title#,
+			name = #name#,
+			content = #content#
+		where unq = #unq#
+	</update>
+
+	<select id="boardDAO.selectBoardPass" resultClass="java.lang.Integer">
+		select count(*) from board where unq = #unq# and pass = #pass#
+	</select>
 	
 
 </sqlMap>

@@ -24,4 +24,13 @@ public interface BoardService {
 	 */
 	public int updateBoardHits(int unq) throws Exception;
 
+	/*
+	 * 수정 처리  
+	 */
+	public int updateBoard(BoardVO vo) throws Exception;
+	/*
+	 * 암호 확인  
+	 */
+	public int selectBoardPass(BoardVO vo) throws Exception;
+	
 }
