@@ -3,5 +3,47 @@
 <sqlMap namespace="MemberSpace">
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias  alias="memberVO" type="main.service.MemberVO"/>
+	
+	<insert id="memberDAO.insertMember">
+		INSERT INTO MEMBER(
+					userid,pass,name,
+					<!-- birth, -->
+					phone,gender,zipcode,
+					address) 
+		VALUES(
+					#userid#,
+					#pass#,
+					#name#,
+					<!-- #birth#, -->
+					#phone#,
+					#gender#,
+					#zipcode#,
+					#address#)
+	</insert>
+
+	<select id="memberDAO.selectMemberIdCheck" resultClass="java.lang.Integer">
+		select count(*) from member where userid = #userid#
+	
+	</select>
+	
+	<select id="memberDAO.selectPostList" resultClass="egovMap">
+		select '[' || a1 || ']' || 
+		       ' ' || a2 || 
+		       ' ' || a3 || 
+		       ' ' || a4 ||  
+		       ' ' || a5 || 
+		       ' ' || a6 || 
+		       ' ' || a7 ||
+		       ' ' || a8 
+		       as  addr
+		from post
+			where a4 like '%'||#dong#||'%'
+				or a5 like '%'||#dong#||'%'
+	</select>
+	
+	<select id="memberDAO.selectMemberCount" resultClass="java.lang.Integer">
+		select count(*) from member 
+		where userid = #userid# and pass = #pass#
+	</select>
 
 </sqlMap>
