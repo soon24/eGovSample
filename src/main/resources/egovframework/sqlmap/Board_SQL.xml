@@ -13,4 +13,35 @@
 			)
 	</insert>
 
+	<!-- List > HashMap -->
+	<!-- where절의 GT, LT를 위해 CDATA 추가 -->
+	<select id="boardDAO.selectBoardList" resultClass="egovMap">
+		select b.* from (
+			select rownum rn, a.* from (
+				select unq,
+						title,
+						name,
+						hits,
+						to_char(rdate,'yyyy-mm-dd') rdate
+				from board
+				
+				<isNotNull property="searchGubun">
+					<isNotNull property="searchText">
+						where $searchGubun$ like '%$searchText$%'
+					</isNotNull>
+				</isNotNull>
+				
+					order by unq desc) a) b
+		where rn >= #startIndex# and rn <![CDATA[<]]>= #endIndex#
+	</select>
+	
+	<select id="boardDAO.selectBoardTotal" resultClass="java.lang.Integer">
+		select count(*) total from board
+			<isNotNull property="searchGubun">
+					<isNotNull property="searchText">
+						where $searchGubun$ like '%$searchText$%'
+					</isNotNull>
+			</isNotNull>
+	</select>
+
 </sqlMap>
