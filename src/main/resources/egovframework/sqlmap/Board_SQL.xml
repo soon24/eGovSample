@@ -44,4 +44,9 @@
 			</isNotNull>
 	</select>
 
+	<select id="boardDAO.selectBoardDetail" resultClass="boardVO">
+		select unq,title,name,content,to_char(rdate,'yyyy-mm-dd') rdate from board
+		where unq=#unq#
+	</select>
+
 </sqlMap>
