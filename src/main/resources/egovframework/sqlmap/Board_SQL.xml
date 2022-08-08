@@ -64,6 +64,9 @@
 	<select id="boardDAO.selectBoardPass" resultClass="java.lang.Integer">
 		select count(*) from board where unq = #unq# and pass = #pass#
 	</select>
-	
 
+	<delete id="boardDAO.deleteBoard">
+		delete from board where unq = #unq# and pass = #pass#
+	</delete>
+	
 </sqlMap>

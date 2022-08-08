@@ -133,6 +133,33 @@ public class BoardController {
 		}
 		return result+""; // ajax jsp에 전송 시에는 반드시 String 형태로 return 해야됩니다.
 	}
+
+	@RequestMapping("/passWrite.do")
+	public String passWrite(int unq, ModelMap model) {
+		
+		System.out.println("passWrite 1==> ");
+		model.addAttribute("unq", unq);
+		
+		return "board/passWrite";
+	}
 	
+	@RequestMapping("/boardDelete.do")
+	@ResponseBody //ajax에 결과 값을 전달(비동기화 방식)하기위한 annotation
+	public String deleteBoard(BoardVO vo) throws Exception {
+		
+		int result = 0;
+		/* 
+		 * 암호  일치 검사 count = 1; 일치 count = 0; 일치하지 않음.
+		 */
+		int count = boardService.selectBoardPass(vo);  // int count = 1;
+		
+		if (count == 1) {
+			result = boardService.deleteBoard(vo);
+		} else if(count == 0) {
+			result = -1;
+		}
+		
+		return result+""; // ajax jsp에 전송 시에는 반드시 String 형태로 return 해야됩니다.
+	}	
 	
 }

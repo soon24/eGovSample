@@ -32,5 +32,10 @@ public interface BoardService {
 	 * 암호 확인  
 	 */
 	public int selectBoardPass(BoardVO vo) throws Exception;
+	/*
+	 * 삭제 처리  
+	 */
+	public int deleteBoard(BoardVO vo) throws Exception;
+	
 	
 }
